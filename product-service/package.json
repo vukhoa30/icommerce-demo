@@ -1,0 +1,22 @@
+{
+  "name": "product-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "pg": "^8.4.2",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.15",
+    "amqplib": "^0.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch . --ext \"ts,json\" --exec \"ts-node index.ts\""
+  },
+  "author": "",
+  "license": "ISC"
+}
