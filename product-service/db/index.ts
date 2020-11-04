@@ -1,26 +1,37 @@
-import { Sequelize } from 'sequelize';
+import Knex from 'knex';
+import { resolve } from 'path';
 
 import {
   DB_DIALECT, DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USERNAME
 } from '../configs/env';
 
-// @ts-ignore
-const sequelize = new Sequelize({
-  dialect: DB_DIALECT,
-  host: DB_HOST,
-  port: DB_PORT,
-  username: DB_USERNAME,
-  password: DB_PASSWORD,
-  database: DB_NAME
-});
+const createKnexClient = () => {
+  return Knex({
+    client: DB_DIALECT,
+    connection: {
+      host: DB_HOST,
+      port: DB_PORT,
+      user: DB_USERNAME,
+      password: DB_PASSWORD,
+      database: DB_NAME
+    },
+    migrations: {
+      extension: process.env.NODE_ENV === 'production' ? 'js' : 'ts',
+      directory: resolve(__dirname, 'migrations')
+    }
+  })
+};
 
-(async () => {
+const migrate = async (knex: Knex) => {
+  const knexClient = createKnexClient();
   try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    await knexClient.migrate.latest();
+    console.log('Migration completed')
+  } catch (e) {
+    console.log('Error during migration:', e);
+  } finally {
+    knexClient.destroy();
   }
-})();
+}
 
-export default 5;
+export { createKnexClient, migrate }

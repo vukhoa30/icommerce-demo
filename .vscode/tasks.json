@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "type": "npm",
+      "script": "build --noImplicitUseStrict",
+      "path": "product-service/",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: build - product-service",
+    },
+    {
+      "type": "npm",
+      "script": "build --noImplicitUseStrict",
+      "path": "main-app/",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: build - main-app"
+    }
+  ]
+}

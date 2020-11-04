@@ -1,32 +1,23 @@
-import { connect } from 'amqplib';
+import { Model } from 'objection';
 
 import { MB_HOST } from './configs/env';
-import a from './db';
+import { runRPCServer } from './lib/amqp';
+import { createKnexClient, migrate } from './db';
 
 // this queue is workers and rpc
 const queue = 'product_service';
 
-// expected data: {
-//   name: 'getProducts',
-//   filter: {
-
-//   }
-// }
-
-(async() => {
+(async () => {
   try {
-    const connection = await connect(MB_HOST);
-    const channel = await connection.createChannel();
-    channel.assertQueue(queue, {
-      durable: false
-    })
-    channel.prefetch(1);
-    console.log(' [x] Awaiting RPC requests');
-    await channel.consume(queue, (msg) => {
-      const data = JSON.parse(msg!.toString());
-    });
-
-  } catch(e) {
-    console.log('oopsy daisy!', e)
+    const knex = createKnexClient();
+    await migrate(knex);
+    Model.knex(knex);
+  } catch (e) {
+    console.log('Error migrating DB:', e)
   }
-})()
+
+  runRPCServer(MB_HOST, queue)
+    .catch(e => {
+      console.log('RPC Server start failed!', e)
+    })
+})();

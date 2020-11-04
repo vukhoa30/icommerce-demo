@@ -1,0 +1,28 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+
+    {
+      "name": "Launch Program",
+      "type": "node",
+      "request": "launch",
+
+      // "program": "${workspaceFolder}\\main-app\\index.ts",
+      // "preLaunchTask": "npm: build - main-app",
+
+      "program": "${workspaceFolder}\\product-service\\index.ts",
+      "preLaunchTask": "npm: build - product-service",
+
+      "sourceMaps": true,
+      "smartStep": true,
+      "internalConsoleOptions": "openOnSessionStart",
+      "outFiles": [
+          // "${workspaceFolder}/main-app/dist/**/*.js",
+          "${workspaceFolder}/product-service/dist/**/*.js",
+      ]
+    }
+  ]
+}

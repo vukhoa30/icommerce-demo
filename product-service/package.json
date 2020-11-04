@@ -4,18 +4,21 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "amqplib": "^0.6.0",
     "dotenv": "^8.2.0",
-    "pg": "^8.4.2",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^6.3.5"
+    "knex": "^0.21.12",
+    "objection": "^2.2.3",
+    "pg": "^8.4.2"
   },
   "devDependencies": {
-    "@types/amqplib": "^0.5.15",
-    "amqplib": "^0.6.0"
+    "@types/amqplib": "^0.5.15"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --watch . --ext \"ts,json\" --exec \"ts-node index.ts\""
+    "start": "node dist/app.js",
+    "dev": "nodemon --watch . --ext \"ts,json\" --exec \"ts-node index.ts\"",
+    "build": "tsc",
+    "prestart": "npm run build"
   },
   "author": "",
   "license": "ISC"

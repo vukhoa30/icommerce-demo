@@ -1,0 +1,25 @@
+{
+  "name": "icommerce-demo",
+  "version": "1.0.0",
+  "description": "- Choose one communication method: REST, RabbitMQ, TCP, gRPC\r   -> RabbitMQ + RPC\r   + Reasons:\r     . RabbitMQ replaces Service Registry\r     . One to many\r     . Request in queue if callee is down\r - Choose testing framework: Jest\r - Design architecture:\r   + Services: MainApp (REST API), Products, Marketting\r   + Deployment: Kubernetes or PM2\r     . Depends on the time left\r   + API Gateway needed? -> Nah, using main app\r   + Service registry needed? -> Nah, using RabbitMQ\r   + Develop on same modules or separated?\r     . Same: quick install\r     . Separated: quick deploy on different machine -> this pls\r   + Test on same modules or separated?\r     . Same: Easy\r     . Separated: to deploy on different module -> this pls\r - Logging: Winston\r - Others:\r   + express: best compatibility (over fastify)\r   + postgres: best supported (over mongoDB, MySQL)\r   + sequelize: best usability (over Objection, TypeORM (complex builder))\r - Considering:\r   + Elasticsearch integration with DB: not needed yet (when the product data is large)\r   + Redis: not needed yet (when the dashboard is visited very frequently)",
+  "main": "index.js",
+  "dependencies": {
+    "ts-node": "^9.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vukhoa30/icommerce-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vukhoa30/icommerce-demo/issues"
+  },
+  "homepage": "https://github.com/vukhoa30/icommerce-demo#readme"
+}
