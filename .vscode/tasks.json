@@ -16,6 +16,14 @@
       "group": "build",
       "problemMatcher": [],
       "label": "npm: build - main-app"
+    },
+    {
+      "type": "npm",
+      "script": "build --noImplicitUseStrict",
+      "path": "statistic-service/",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: build - statistic-service"
     }
   ]
 }

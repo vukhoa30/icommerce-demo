@@ -9,9 +9,9 @@ const getProducts = (filter: any, sort: any) => {
 
   Object.keys(filter).forEach((key, idx) => {
     if (idx === 0) {
-      query.where(key, 'like', filter[key]);
+      query.where(key, 'like', `%${filter[key]}%`);
     } else {
-      query.andWhere(key, 'like', filter[key]);
+      query.andWhere(key, 'like', `%${filter[key]}%`);
     }
   })
   if (sortBy) {

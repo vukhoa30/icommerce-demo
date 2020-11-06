@@ -13,15 +13,19 @@
       // "program": "${workspaceFolder}\\main-app\\index.ts",
       // "preLaunchTask": "npm: build - main-app",
 
-      "program": "${workspaceFolder}\\product-service\\index.ts",
-      "preLaunchTask": "npm: build - product-service",
+      // "program": "${workspaceFolder}\\product-service\\index.ts",
+      // "preLaunchTask": "npm: build - product-service",
+
+      "program": "${workspaceFolder}\\statistic-service\\index.ts",
+      "preLaunchTask": "npm: build - statistic-service",
 
       "sourceMaps": true,
       "smartStep": true,
       "internalConsoleOptions": "openOnSessionStart",
       "outFiles": [
           // "${workspaceFolder}/main-app/dist/**/*.js",
-          "${workspaceFolder}/product-service/dist/**/*.js",
+          // "${workspaceFolder}/product-service/dist/**/*.js",
+          "${workspaceFolder}/product-statistic/dist/**/*.js",
       ]
     }
   ]

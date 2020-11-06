@@ -8,11 +8,12 @@ import {
   SERVICE_EXCHANGE_MAINAPP_QUERY
 } from './configs/constants';
 
+
 (async () => {
   try {
     const knex = createKnexClient();
     Model.knex(knex);
-    await migrate(knex);
+    await migrate();
   } catch (e) {
     console.log('Error migrating DB:', e);
   }

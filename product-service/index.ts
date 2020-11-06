@@ -8,7 +8,7 @@ import { SERVICE_QUEUE_PRODUCT } from './configs/constants';
 (async () => {
   try {
     const knex = createKnexClient();
-    await migrate(knex);
+    await migrate();
     Model.knex(knex);
   } catch (e) {
     console.log('Error migrating DB:', e)
