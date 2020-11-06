@@ -3,9 +3,7 @@ import { Model } from 'objection';
 import { MB_HOST } from './configs/env';
 import { runRPCServer } from './lib/amqp';
 import { createKnexClient, migrate } from './db';
-
-// this queue is workers and rpc
-const queue = 'product_service';
+import { SERVICE_QUEUE_PRODUCT } from './configs/constants';
 
 (async () => {
   try {
@@ -16,7 +14,7 @@ const queue = 'product_service';
     console.log('Error migrating DB:', e)
   }
 
-  runRPCServer(MB_HOST, queue)
+  runRPCServer(MB_HOST, SERVICE_QUEUE_PRODUCT)
     .catch(e => {
       console.log('RPC Server start failed!', e)
     })

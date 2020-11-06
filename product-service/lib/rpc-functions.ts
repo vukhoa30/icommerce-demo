@@ -4,7 +4,7 @@ const getProducts = async (filter: any, sort: any) => {
   return ProductService.getProducts(filter, sort);
 }
 
-const getProduct = async (id: string) => {
+const getProduct = async (id: number) => {
   return ProductService.getProduct(id);
 }
 

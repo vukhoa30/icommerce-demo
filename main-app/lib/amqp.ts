@@ -24,7 +24,7 @@ const createClient = async (rabbitmqConn: string) => {
   return channel;
 }
 
-const sendRPCData = (channel: any, data: any, rpcQueue: any) =>
+const sendRPCData = (channel: any, data: any, rpcQueue: string) =>
   new Promise(resolve => {
     const correlationId = generateId();
     channel.responseEmitter.once(correlationId, (resData: any) => (resolve(JSON.parse(resData))));
@@ -34,4 +34,10 @@ const sendRPCData = (channel: any, data: any, rpcQueue: any) =>
     });
   });
 
-export { createClient, sendRPCData };
+const publish = async (channel: Channel, data: any, exchange: string) => {
+  channel.assertExchange(exchange, 'fanout');
+  channel.publish(exchange, '', Buffer.from(JSON.stringify(data)));
+  console.log(' [x] pulished', data);
+}
+
+export { createClient, sendRPCData, publish };

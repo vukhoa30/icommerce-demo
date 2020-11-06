@@ -1,7 +1,7 @@
 import { Model } from 'objection';
 
 interface IProduct {
-  id: string;
+  id: number;
   name: string;
   description?: string;
   branch?: string;
@@ -14,7 +14,7 @@ class Product extends Model implements IProduct {
     return 'product';
   }
 
-  id = '';
+  id = 0;
   name = '';
   description?: string;
   branch?: string;

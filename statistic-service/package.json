@@ -1,0 +1,25 @@
+{
+  "name": "statistic-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "amqplib": "^0.6.0",
+    "dotenv": "^8.2.0",
+    "knex": "^0.21.12",
+    "objection": "^2.2.3",
+    "pg": "^8.4.2"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.15"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/app.js",
+    "dev": "nodemon --watch . --ext \"ts,json\" --exec \"ts-node index.ts\"",
+    "build": "tsc",
+    "prestart": "npm run build"
+  },
+  "author": "",
+  "license": "ISC"
+}

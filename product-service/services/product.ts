@@ -7,9 +7,6 @@ const getProducts = (filter: any, sort: any) => {
   const direction = sortBy && sort[sortBy];
   const query = Product.query();
 
-  console.log(filter);
-  console.log(sortBy);
-  console.log(direction);
   Object.keys(filter).forEach((key, idx) => {
     if (idx === 0) {
       query.where(key, 'like', filter[key]);
@@ -23,6 +20,6 @@ const getProducts = (filter: any, sort: any) => {
   return query;
 }
 
-const getProduct = (id: string) => Product.query().findById(id);
+const getProduct = (id: number) => Product.query().findById(id);
 
 export { getProducts, getProduct }
