@@ -24,7 +24,6 @@ const runRPCServer = async (rabbitmqConn: string, queue: string) => {
       correlationId: msg?.properties.correlationId
     });
 
-    channel.ack(msg!);
     console.log('responsed with:', rslt);
   });
 }

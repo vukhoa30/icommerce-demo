@@ -9,7 +9,7 @@
 ### Sequence diagram for communication with RPC pattern and Direct Reply-to feature of RabbitMQ, describing the flow main-app request product-service for product data:
 ![Sequence Diagram](https://i.ibb.co/tY70BdJ/sequence.png)
   
-# Demo instructions
+# Self demo instructions
 - Reprequisite: NodeJS, RabbitMQ server, PostgreSQL server, ts-node globally installed
 - Configure database settings:
   + Create these databases manually if they don't exist:
@@ -27,6 +27,7 @@ DB_USERNAME=<enter DB_USERNAME here>
 - Start app:
   + Method 1: run `npm run startDev` which using pm2
   + Method 2: run `ts-node index.ts` in 3 folders main-app, product-service, statistic-service (need to cd to the folder first)
+  *Notes: When running app, the DB migration and seed operations will be executed*
 - Run unit tests:
   + Go to product-service or statistic-service on terminal and run `npm test`
   
@@ -45,6 +46,18 @@ DB_USERNAME=<enter DB_USERNAME here>
 # Source code description
 ### Lib/frameworks
 Express, RabbitMQ, knex, objectionjs, Jest, typescript, postgresql
+### Principles used, patterns, practices used
+- Object oriented principle: using typescript with interfaces, classes and extends (inherit), implements (interface)
+- Don't Repeat Yourself (DRY). For example, to make a RPC, project maintainer doesn't need to re-establish the whole RabbitMQ handling because it's already defined. He/she only needs to specify the data and the queue name for the function `sendRPCData()`
+- Keep it simple, stupid (KISS): every function only does one certain thing
+- Big design up front (BDUF): I design the app components, services, how it communite with each other(data flow), choosing the suitable tools in the beginning of the project.
+### Patterns used
+- RPC (Remote Procedure Call) pattern.
+- Publish/Subscribe pattern.
+### Best practices used
+- Save testing requests in Postman and run it beside unit tests before every commit
+- Using code naming over commenting
+
 ### Services:
 - Names and descriptions:
   + main-app: Is a REST API server, handle HTTP requests from client
