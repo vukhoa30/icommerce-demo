@@ -13,14 +13,15 @@
 - Reprequisite: NodeJS, RabbitMQ server, PostgreSQL server, ts-node globally installed
 - Configure database settings:
   + Create these databases manually if they don't exist:
-    . For development: 'serviceproduct', 'servicestatistic'
-    . For unit testing: 'testserviceproduct', 'testservicestatistic'
+    * For development: 'serviceproduct', 'servicestatistic'
+    * For unit testing: 'testserviceproduct', 'testservicestatistic'
   + Go to product-service, create file named ".env", input the database username and password:
+    * If you follow the method 1 bellow (recommended), input the 4 fields of DB username and password in "./ecosystem.config.js"
+    * If you follow the method 2 bellow, Go to product-service, create file named ".env", input the database username and password and do the same for statistic-service:
 ```
 DB_PASSWORD=<enter DB_PASSWORD here>
 DB_USERNAME=<enter DB_USERNAME here>
 ```
-  + Create the same ".env" file for statistic-service
 - Install all dependencies: `npm run ins`
 - Compile all typescript services: `npm run compile`
 - Start app:
@@ -42,18 +43,19 @@ DB_USERNAME=<enter DB_USERNAME here>
   `curl --request GET 'http://localhost:3000/statistic/products/detail-view?ids=%5B1%5D'`
 
 # Source code description
-- Lib/frameworks: Express, RabbitMQ, knex, objectionjs, Jest, typescript, postgresql
-- Services:
-  + Names and descriptions:
-    . main-app: Is a REST API server, handle HTTP requests from client
-    . product-service: Provide product operations including store and query for other services (only main-app at this point)
-    . statistic-service: Provide statistic operations for other services, currently handling statistic for product querying for the main-app
-  + Service communications:
-    . Using RabbitMQ with RPC pattern and Direct Reply-to feature, to main-app to request functions from product-service and statistic-service
-    . Using RabbitMQ with publish/subscribe pattern to make main-app publish the events of product querying to statistic-service to store the data for marketing
-  + Service code structure example: main-app
-    . configs: provide environment variables handling and constants
-    . lib: provide main functions for the service including setting up HTTP server and RabbitMQ functions for service communication
-    . routes: describe the REST server routing and it handling
-    . index.ts: App start file
-    . .env.example: environment variables template
+### Lib/frameworks
+Express, RabbitMQ, knex, objectionjs, Jest, typescript, postgresql
+### Services:
+- Names and descriptions:
+  + main-app: Is a REST API server, handle HTTP requests from client
+  + product-service: Provide product operations including store and query for other services (only main-app at this point)
+  + statistic-service: Provide statistic operations for other services, currently handling statistic for product querying for the main-app
+- Service communications:
+  + Using RabbitMQ with RPC pattern and Direct Reply-to feature, to main-app to request functions from product-service and statistic-service
+  + Using RabbitMQ with publish/subscribe pattern to make main-app publish the events of product querying to statistic-service to store the data for marketing
+- Service code structure example: main-app
+  + configs: provide environment variables handling and constants
+  + lib: provide main functions for the service including setting up HTTP server and RabbitMQ functions for service communication
+  + routes: describe the REST server routing and it handling
+  + index.ts: App start file
+  + .env.example: environment variables template
