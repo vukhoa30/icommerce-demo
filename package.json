@@ -4,13 +4,18 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "pm2": "^4.5.0",
     "ts-node": "^9.0.0"
   },
   "devDependencies": {
     "typescript": "^4.0.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ins": "npm i && cd main-app && npm i && cd ../product-service && npm i && cd ../statistic-service && npm i",
+    "compile": "cd main-app && tsc && cd ../product-service && tsc && cd ../statistic-service && tsc",
+    "startDev": "./node_modules/.bin/pm2 start ecosystem.config.js",
+    "stopDev": "./node_modules/.bin/pm2 stop ecosystem.config.js && ./node_modules/.bin/pm2 delete all"
   },
   "repository": {
     "type": "git",

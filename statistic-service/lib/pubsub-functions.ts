@@ -10,8 +10,6 @@ const subscriptionHandler = async (exchange: string, data: any) => {
   let args: any[];
   switch (exchange) {
     case SERVICE_EXCHANGE_MAINAPP_QUERY: {
-      // let statistic;
-      // const productId = data.productId;
       fn = addProductStatistic;
       args = [data];
       break;

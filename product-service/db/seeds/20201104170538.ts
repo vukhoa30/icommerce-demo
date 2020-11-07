@@ -28,7 +28,10 @@ const dataset = [{
 }]
 
 export const seed = (knex: Knex) => {
-  return knex('product').del().then(() => {
-    return knex('product').insert(dataset);
+  return knex('product').select().then((rslt) => {
+    if (rslt.length === 0) {
+      return knex('product').insert(dataset);
+    }
+    return null;
   });
 };

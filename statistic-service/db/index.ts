@@ -18,6 +18,9 @@ const createKnexClient = () => {
     migrations: {
       extension: ENV === 'production' ? 'js' : 'ts',
       directory: resolve(__dirname, 'migrations')
+    },
+    seeds: {
+      directory: resolve(__dirname, 'seeds')
     }
   })
 };
@@ -34,4 +37,16 @@ const migrate = async () => {
   }
 }
 
-export { createKnexClient, migrate }
+const seed = async () => {
+  const knex = createKnexClient();
+  try {
+    await knex.seed.run();
+    console.log('Seeding completed');
+  } catch (e) {
+    console.log('Error during seeding:', e);
+  } finally {
+    knex.destroy();
+  }
+}
+
+export { createKnexClient, migrate, seed }

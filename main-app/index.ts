@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 
 import routes from './routes';
+import { APP_PORT } from './configs/env';
 
 // Middlewares
 const app = express();
@@ -17,5 +18,4 @@ app.use(cors());
 app.use("/", routes);
 
 // Starting the App
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => { console.log(`Listening on port: ${PORT}`) });
+app.listen(APP_PORT, () => { console.log(`Listening on port: ${APP_PORT}`) });

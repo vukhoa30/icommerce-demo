@@ -2,7 +2,7 @@ import { Model } from 'objection';
 
 import { MB_HOST } from './configs/env';
 import { runRPCServer, subscribe } from './lib/amqp';
-import { createKnexClient, migrate } from './db';
+import { createKnexClient, migrate, seed } from './db';
 import {
   SERVICE_QUEUE_STATISTIC,
   SERVICE_EXCHANGE_MAINAPP_QUERY
@@ -14,6 +14,7 @@ import {
     const knex = createKnexClient();
     Model.knex(knex);
     await migrate();
+    await seed();
   } catch (e) {
     console.log('Error migrating DB:', e);
   }

@@ -35,16 +35,3 @@ export {
   getProductDetailViewStatistic,
   addProductStatistic
 }
-
-// deletethis
-(async() => {
-  try {
-    // console.log(await getProductQueryStatistic([], ['id'], new Date(Date.now() - 1000*60*60*24), new Date()));
-    // console.log(await getProductDetailViewStatistic([0], new Date(Date.now() - 1000*60*60*24), new Date()));
-    // console.log(await addProductStatistic({ productId: 3 }));
-    console.log('');
-    // console.log(await addProductStatistic({ filter: { color: 'Green' } }));
-  } catch (e) {
-    console.log(e)
-  }
-})()
