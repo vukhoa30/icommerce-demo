@@ -21,9 +21,9 @@
   },
   "scripts": {
     "test": "./node_modules/.bin/jest",
-    "start": "node dist/app.js",
+    "start": "node index.js",
+    "buildProd": "tsc && cp package.json ./dist/package.json && cd dist && npm i",
     "dev": "nodemon --watch . --ext \"ts,json\" --exec \"ts-node index.ts\"",
-    "build": "tsc",
     "prestart": "npm run build"
   },
   "author": "",
