@@ -7,7 +7,7 @@
 ## DB Diagram
 ![DB Diagram](https://i.ibb.co/n0xrmBL/db.png)
 ### Sequence diagram for communication with RPC pattern and Direct Reply-to feature of RabbitMQ, describing the flow main-app request product-service for product data:
-![Sequence Diagram](https://i.ibb.co/tY70BdJ/sequence.png)
+![Sequence Diagram](https://i.ibb.co/2cVBxsM/sequence.png)
   
 # Self demo instructions
 - Reprequisite: NodeJS, RabbitMQ server, PostgreSQL server, ts-node globally installed
@@ -30,6 +30,10 @@ DB_USERNAME=<enter DB_USERNAME here>
   *Notes: When running app, the DB migration and seed operations will be executed*
 - Run unit tests:
   + Go to product-service or statistic-service on terminal and run `npm test`
+- Package for production:
+  + Run `npm run oneCommandPackage`, a folder named "dist" will appear at root folder
+  + Go to "dist", update environment variables in the file `ecosystem.config.js` (workaround for pm2)
+  + The production app can be started with `npm start` now
   
 # Testing:
 - Service unit tests: */services/*.test.ts . Follow the steps in "Demo instructions" section to setup project and test.
